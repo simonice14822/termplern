@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-pink-100 to-blue-100 min-h-screen flex flex-col justify-center items-center">
+  
+  <div class="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+    <h2 class="text-2xl font-semibold text-center text-blue-600">เข้าสู่ระบบ</h2>
+    <form action="login.php" method="post" class="mt-6">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">อีเมลหรือชื่อผู้ใช้</label>
+        <input name="email" type="text" class="mt-1 block w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="กรอกอีเมลหรือชื่อผู้ใช้">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">รหัสผ่าน</label>
+        <input name="password" type="password" class="mt-1 block w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="กรอกรหัสผ่าน">
+      </div>
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">เข้าสู่ระบบ</button>
+    </form>
+    <div class="mt-4 text-center text-sm text-gray-600">
+      <a href="change_password.php" class="text-pink-500 hover:underline">ลืมรหัสผ่าน?</a>
+      <span class="mx-2">|</span>
+      <a href="register.html" class="text-blue-500 hover:underline">สมัครสมาชิก</a>
+    </div>
+  </div>
+
+  <!-- ✅ Pop-up Modal แสดงเมื่อสมัครสมาชิกสำเร็จ -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">สมัครสมาชิกสำเร็จ!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ✅ คุณสามารถเข้าสู่ระบบได้ทันที 🎉
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ JavaScript ตรวจสอบ URL แล้วเปิด Pop-up -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("status") === "registered") {
+            var myModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            myModal.show();
+        }
+    });
+  </script>
+
+  <!-- ✅ โหลด Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
